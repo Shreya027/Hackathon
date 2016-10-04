@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en" data-framework="backbonejs">
+	<head>
+		<meta charset="utf-8">
+		<title>Todo-Backend client</title>
+		<link rel="stylesheet" href="css/vendor/todomvc-common.css">
+		<link rel="stylesheet" href="css/chooser.css">
+		<title>Bootbusiness | Give unique title of the page here</title>
+    <!-- Bootstrap -->
+    <link href="C:\Users\Sarmishta\Desktop\bootbusiness\css\bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap responsive -->
+    <link href="C:\Users\Sarmishta\Desktop\bootbusiness\css\bootstrap-responsive.min.css" rel="stylesheet">
+    <!-- Font awesome - iconic font with IE7 support --> 
+    <link href="C:\Users\Sarmishta\Desktop\bootbusiness\css\font-awesome.css" rel="stylesheet">
+    <link href="C:\Users\Sarmishta\Desktop\bootbusiness\css\font-awesome-ie7.css" rel="stylesheet">
+    <!-- Bootbusiness theme -->
+    <link href="C:\Users\Sarmishta\Desktop\bootbusiness\css\boot-business.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
+		<style>
+      body{
+        font-family: 'PT Sans Caption', sans-serif;
+      }
+      .item{
+       height: 650px;
+      }
+      #register{
+        font-size:20px;
+        padding:20px;
+      }
+			#todoapp{
+				position:absolute;
+				top:15%;
+				right:35%;
+			}
+			#info{
+				font-size:15px;
+				position:absolute;
+				width:380px;
+				top:60%;
+				right:35%;
+			}
+			.navbar{
+				width:1005;
+			}
+    </style>
+  </head>
+  <body>
+    <!-- Start: HEADER -->
+    <header>
+      <!-- Start: Navigation wrapper -->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a href="index.html" class="brand brand-bootbus">Bootbusiness</a>
+            <!-- Below button used for responsive navigation -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Start: Primary navigation -->
+            <div class="nav-collapse collapse">        
+              <ul class="nav pull-right">
+                <!--<li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products and Services<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="nav-header">PRODUCTS</li>
+                    <li><a href="product.html">Product1</a></li>
+                    <li><a href="product.html">Product2</a></li>
+                    <li><a href="product.html">Product3</a></li>
+                    <li><a href="all_products.html">All products</a></li>             
+                    <li class="divider"></li>
+                    <li class="nav-header">SERVICES</li>
+                    <li><a href="service.html">Service1</a></li>
+                    <li><a href="service.html">Service2</a></li>
+                    <li><a href="service.html">Service3</a></li>
+                    <li><a href="all_services.html">All services</a></li>
+                  </ul>                  
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="our_works.html">Our works</a></li>
+                    <li><a href="patnerships.html">Parnerships</a></li>
+                    <li><a href="leadership.html">Leadership</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                  </ul>
+                </li>-->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Upcoming Events</a></li>
+                <li><a href="contact_us.html">Contact us</a></li>
+                <li><a href="signup.html">Register</a></li>
+                <li><a href="signin.html">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End: Navigation wrapper --> 
+    </header>
+
+    <section id="api-root">
+      <div class="wrapper">
+        <label for="api-root-url">Username</label>
+        <input id="api-root-url" placeholder="e.g. abc123"></input>
+      </div>
+      <button>go</button>
+    </section>
+
+		<section id="todoapp">
+			<header id="header">
+				<h1>todos</h1>
+				<input id="new-todo" placeholder="What needs to be done?" autofocus>
+			</header>
+			<section id="main">
+				<input id="toggle-all" type="checkbox">
+				<label for="toggle-all">Mark all as complete</label>
+				<ul id="todo-list"></ul>
+			</section>
+			<footer id="footer"></footer>
+		</section>
+		<footer id="info">
+			<p>Double-click to edit a todo</p>
+		</footer>
+		<script type="text/template" id="item-template">
+			<div class="view">
+				<input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+				<label><%- title %></label>
+				<button class="destroy"></button>
+			</div>
+			<input class="edit" value="<%- title %>">
+		</script>
+		<script type="text/template" id="stats-template">
+			<span id="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
+			<ul id="filters">
+				<li>
+					<a class="selected" href="#/">All</a>
+				</li>
+				<li>
+					<a href="#/active">Active</a>
+				</li>
+				<li>
+					<a href="#/completed">Completed</a>
+				</li>
+			</ul>
+			<% if (completed) { %>
+			<button id="clear-completed">Clear completed (<%= completed %>)</button>
+			<% } %>
+		</script>
+		<script src="js/vendor/todomvc-common.js"></script>
+		<script src="js/vendor/jquery.js"></script>
+		<script src="js/vendor/underscore.js"></script>
+		<script src="js/vendor/backbone.js"></script>
+
+		<script src="js/models/todo.js"></script>
+		<script src="js/collections/todos.js"></script>
+		<script src="js/views/todo-view.js"></script>
+		<script src="js/views/app-view.js"></script>
+		<script src="js/routers/router.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>

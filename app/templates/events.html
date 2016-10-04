@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bootbusiness | Short description about company">
+    <meta name="author" content="Your name">
+    <title>Bootbusiness | Give unique title of the page here</title>
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap responsive -->
+    <link href="{% static 'css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+    <!-- Font awesome - iconic font with IE7 support --> 
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome-ie7.css' %}" rel="stylesheet">
+    <!-- Bootbusiness theme -->
+    <link href="{% static 'css/boot-business.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
+    <style>
+      body{
+        font-family: 'PT Sans Caption', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Start: HEADER -->
+    <header>
+      <!-- Start: Navigation wrapper -->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a href="index.html" class="brand brand-bootbus">We Care</a>
+            <!-- Below button used for responsive navigation -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Start: Primary navigation -->
+            <div class="nav-collapse collapse">        
+              <ul class="nav pull-right">
+                <!--<li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products and Services<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="nav-header">PRODUCTS</li>
+                    <li><a href="product.html">Product1</a></li>
+                    <li><a href="product.html">Product2</a></li>
+                    <li><a href="product.html">Product3</a></li>
+                    <li><a href="all_products.html">All products</a></li>             
+                    <li class="divider"></li>
+                    <li class="nav-header">SERVICES</li>
+                    <li><a href="service.html">Service1</a></li>
+                    <li><a href="service.html">Service2</a></li>
+                    <li><a href="service.html">Service3</a></li>
+                    <li><a href="all_services.html">All services</a></li>
+                  </ul>                  
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="our_works.html">Our works</a></li>
+                    <li><a href="patnerships.html">Parnerships</a></li>
+                    <li><a href="leadership.html">Leadership</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                  </ul>
+                </li>-->
+                <li><a href="/index/">Home</a></li>
+                <li><a href="/about/">Maps</a></li>
+				<li><a href = "/create/">Calendars</a></li>
+                <li><a href="/events/">Upcoming Events</a></li>
+                <li><a href="/contact/">Contact us</a></li>
+                <li><a href="/entertainment/">Entertainment</a></li>
+                <li><a href="/signin/">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End: Navigation wrapper -->   
+    </header>
+    <!-- End: HEADER -->
+    <!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Upcoming Events</h1>
+        </div>
+        <div class="row bottom-space">
+          <div class="span1 offset1">
+            <div class="circle">
+              <span class="event-date">Oct<br>10</span>
+            </div>
+          </div>
+          <div class="span9">
+            <h4><a href="#">LAUGHTER CLUB</a></h4>
+            <p>
+              The person who laughs the most is the happiest.Join in and be a part of the laughing experience at Nana-Nani Park , Andheri on 10th Oct. Timing: 7AM -8AM
+            </p>
+          </div>
+        </div>
+        <div class="row bottom-space">
+          <div class="span1 offset1">
+            <div class="circle">
+              <span class="event-date">Oct<br>10</span>
+            </div>
+          </div>
+          <div class="span9">
+            <h4><a href="#">PHOTO ACADEMY</a></h4>
+            <p>
+              Age is just a number. And it's never too late to test your photography skills.Attend interactive sessions at Photo Academy ,Bandra on Oct 10.Timing: 7PM -8PM
+            </p>
+          </div>
+        </div>
+        <div class="row bottom-space">
+          <div class="span1 offset1">
+            <div class="circle">
+              <span class="event-date">Oct<br>20</span>
+            </div>
+          </div>
+          <div class="span9">
+            <h4><a href="#">PAINTING CONTEST</a></h4>
+            <p>
+              Show off your artistic talent by participating in our monthly contest at Lotus School, Andheri on Oct 20.Timing: 4PM-6PM
+            </p>
+          </div>
+        </div>
+        <div class="row bottom-space">
+          <div class="span1 offset1">
+            <div class="circle">
+              <span class="event-date">Nov<br>1</span>
+            </div>
+          </div>
+          <div class="span9">
+            <h4><a href="#">TRAVEL CLUB</a></h4>
+            <p>
+              Traveling – it leaves you speechless, then turns you into a storyteller. We travel, some of us forever, to seek other places, other lives, other souls.For my part, I travel not to go anywhere, but to go. I travel for travel’s sake. The great affair is to move.To be a part of the travel club attend our montly travel sessions at Khar Gymkhana. Timing: 8PM onwards.
+            </p>
+          </div>
+        </div>
+        <div class="row bottom-space">
+          <div class="span1 offset1">
+            <div class="circle">
+              <span class="event-date">Nov<br>12</span>
+            </div>
+          </div>
+          <div class="span9">
+            <h4><a href="#">GET-TOGETHER</a></h4>
+            <p>
+              Time spent with old  friends is the best time. We understand this and hence have arranged for a senior citizens get-together at Matunga Gymnkhana on Nov 12 .Timing:8PM-11PM.
+            </p>
+          </div>
+        </div>
+      </div>
+    <div>
+    <!-- End: MAIN CONTENT -->
+    <!-- Start: FOOTER -->
+    <footer>
+      <div class="container">
+        <center>
+        <h5><a href="#">License</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+        <a href="#">Terms of Use</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+        <a href="#">Privacy Policy</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+        <a href="#">Security</a></h5>
+        </center>
+      </div>
+      <br>
+      <div class="container">
+        <h6 style="float:right">  
+        &copy; The Golden Trio. All Rights Reserved.
+        </h6>
+      </div>
+    </footer>
+    <!-- End: FOOTER -->
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/boot-business.js' %}"></script>
+  </body>
+</html>

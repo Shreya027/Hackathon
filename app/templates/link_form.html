@@ -1,0 +1,226 @@
+<html>
+{% load staticfiles %}
+<head>
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap responsive -->
+    <link href="{% static 'css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+    <!-- Font awesome - iconic font with IE7 support --> 
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome-ie7.css' %}" rel="stylesheet">
+    <!-- Bootbusiness theme -->
+    <link href="{% static 'css/boot-business.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
+    <title>Search</title>
+
+    <style type="text/css">
+    h1 {
+        background-color:white;
+        padding: 10px;
+        width: 80%;
+        border: black 3px solid;   
+        opacity: 0.4;
+
+    }
+    body {
+         
+  background-size:cover;
+       
+
+    }
+    input {
+     border: none;
+     width: 95%;
+    
+    font-size: 15px;
+    font-style: italic;
+    padding:20px;
+
+
+
+}   
+    p{
+        background-color:white;
+        padding: 10px;
+        width: 40%;
+        font-size: 20px;
+        
+        opacity: 0.4;
+        text-align: center;
+
+    }
+    
+        .options {
+        background-color:white ;
+        padding: 20px;
+        width: 98%;
+        font-size: 20px;
+        opacity: 0.4;
+        font-weight: normal;
+        font-style: italic;
+        font-color:white;
+        word-spacing: 10px;
+        margin:50px;
+        margin-left: 14px;
+        
+
+    }
+    #s {
+
+        position: absolute;
+        top:350px;
+        left: 870px;
+         width:250px;
+        height: 250px; 
+        opacity: 0.3;
+        font-size: 60px;
+       
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        font-style: italic;;
+
+        
+    }
+    .sm {
+        background-color:white;
+        padding: 10px;
+        width: 34%;
+        font-size: 20px;
+        margin-left: 3px;
+        opacity: 0.4;
+        text-align: center;
+
+    }
+
+    #shift {
+        position: absolute;
+        top:10px;
+        left:10px;
+    
+
+    }
+
+    #move {
+        
+    }
+    a{
+
+        padding: 20px;
+    }
+   
+    </style>  
+
+
+
+</head>
+<body>
+<header>
+      <!-- Start: Navigation wrapper -->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a href="index.html" class="brand brand-bootbus">Bootbusiness</a>
+            <!-- Below button used for responsive navigation -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Start: Primary navigation -->
+            <div class="nav-collapse collapse">        
+              <ul class="nav pull-right">
+                <!--<li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products and Services<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="nav-header">PRODUCTS</li>
+                    <li><a href="product.html">Product1</a></li>
+                    <li><a href="product.html">Product2</a></li>
+                    <li><a href="product.html">Product3</a></li>
+                    <li><a href="all_products.html">All products</a></li>             
+                    <li class="divider"></li>
+                    <li class="nav-header">SERVICES</li>
+                    <li><a href="service.html">Service1</a></li>
+                    <li><a href="service.html">Service2</a></li>
+                    <li><a href="service.html">Service3</a></li>
+                    <li><a href="all_services.html">All services</a></li>
+                  </ul>                  
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="our_works.html">Our works</a></li>
+                    <li><a href="patnerships.html">Parnerships</a></li>
+                    <li><a href="leadership.html">Leadership</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                  </ul>
+                </li>-->
+                <li><a href="/index/">Home</a></li>
+                <li><a href="/about/">Maps</a></li>
+				<li><a href = "/create/">Calendars</a></li>
+                <li><a href="/events/">Upcoming Events</a></li>
+                <li><a href="/contact/">Contact us</a></li>
+                <li><a href="/entertainment/">Entertainment</a></li>
+                <li><a href="/signin/">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End: Navigation wrapper -->   
+    </header>
+    <!--<h1> Choose a country from below </h1>-->
+    <!--<ul>
+    {% for x in full %}
+    
+    <li>{{x.name}}</li>
+    
+    {% endfor %}
+    </ul>-->
+
+    <!-- Navbar -->
+
+
+    <p class="options" > Bank  Hospital Shopping Flight </p>
+    <div id="s"> WE CARE FOR YOU</div>
+
+     
+
+
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="" method="get">
+        <div id="shift"><input type="text" name="q">
+        <input type="submit" value="Search"></div>
+    </form>
+
+    {% if link %}
+        <!--<p>Found {{ travel|length }} name{{ travel|pluralize }}.</p> -->
+     
+            {% for place in link %}
+         
+            <p class="sm">{{ place.name }}</p>
+            
+           
+            <a  class="sm"  href="{{place.w1}}">{{place.w1}}</a><br/>
+            <a  class="sm"  href="{{place.w2}}">{{place.w2}}</a><br/>
+            <a  class="sm"  href="{{place.w3}}">{{place.w3}}</a><br/>
+            <a  class="sm"  href="{{place.w4}}">{{place.w4}}</a><br/>
+            <a  class="sm"  href="{{place.w5}}">{{place.w5}}</a><br/>
+          
+            {% endfor %}
+            
+      
+    
+   
+    {% endif %}
+   
+</body>
+</html>

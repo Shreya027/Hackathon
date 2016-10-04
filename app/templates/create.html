@@ -1,0 +1,315 @@
+<html>
+  <head>
+	<title>Bootbusiness | Give unique title of the page here</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap responsive -->
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <!-- Font awesome - iconic font with IE7 support --> 
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/font-awesome-ie7.css" rel="stylesheet">
+    <!-- Bootbusiness theme -->
+    <link href="css/boot-business.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
+    <style>
+      body{
+        font-family: 'PT Sans Caption', sans-serif;
+      }
+       footer{
+        width:100%;
+        position: absolute;
+        top:85%;
+        margin:0;
+        padding:0;
+      }
+      iframe{
+        border:none;
+      }
+     input{
+        height:30px;
+      }
+      form{
+        font-size:20px;
+      }
+      .btn{
+        font-size:15px;
+        padding:15px
+      }
+    </style>
+    <script type="text/javascript">
+      // Your Client ID can be retrieved from your project in the Google
+      // Developer Console, https://console.developers.google.com
+      var CLIENT_ID = '108659704604-lj5s4jt8bmpaki91vurvdiss5dthd6ev.apps.googleusercontent.com';
+
+      var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+
+      /**
+       * Check if current user has authorized this application.
+       */
+      function checkAuth() {
+        gapi.auth.authorize(
+          {
+            'client_id': CLIENT_ID,
+            'scope': SCOPES.join(' '),
+            'immediate': true
+          }, handleAuthResult);
+      }
+
+      /**
+       * Handle response from authorization server.
+       *
+       * @param {Object} authResult Authorization result.
+       */
+      function handleAuthResult(authResult) {
+	  var authorizeDiv = document.getElementById('authorize-div');
+        if (authResult && !authResult.error) {
+          // Hide auth UI, then load client library.
+          loadCalendarApi();
+        } else {
+          // Show auth UI, allowing the user to initiate authorization by
+          // clicking authorize button.
+          authorizeDiv.style.display = 'inline';
+        }
+      }
+
+      /**
+       * Initiate auth flow in response to user clicking authorize button.
+       *
+       * @param {Event} event Button click event.
+       */
+      function handleAuthClick(event) {
+        gapi.auth.authorize(
+          {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+          handleAuthResult);
+        return false;
+      }
+
+      /**
+       * Load Google Calendar client library. List upcoming events
+       * once client library is loaded.
+       */
+      function loadCalendarApi() {
+        gapi.client.load('calendar', 'v3', create_event);
+      }
+
+      /**
+       * Print the summary and start datetime/date of the next ten events in
+       * the authorized user's calendar. If no events are found an
+       * appropriate message is printed.
+       */
+      function create_event() {
+			var start_date = document.getElementById("start_date").value;
+			var end_date = document.getElementById("end_date").value;
+			var start_time = document.getElementById("start_time").value;
+			var end_time = document.getElementById("end_time").value;
+			var start = new Date(start_date+'T'+start_time);
+			var end = new Date(end_date+'T'+end_time);
+			alert(start);
+			var a = start.toISOString();
+			var b = end.toISOString();
+			if(document.getElementById("recurrence").value=="none")
+		{	var event = {
+		'summary':document.getElementById("summary").value,
+		'start': {
+				'dateTime': a,
+				"timeZone" : "Asia/Calcutta"
+		},
+		'end': {
+				'dateTime': b,
+				"timeZone" : "Asia/Calcutta"
+		},
+		};
+	}
+			else if(document.getElementById("recurrence").value=="daily")
+		{	var event = {
+		'summary':document.getElementById("summary").value,
+		'start': {
+				'dateTime': a,
+				"timeZone" : "Asia/Calcutta"
+		},
+		'end': {
+				'dateTime': b,
+				"timeZone" : "Asia/Calcutta"
+		},
+		'recurrence': [
+			"RRULE:FREQ=DAILY",
+		],
+		'reminders': {
+			'useDefault': false,
+			'overrides': [
+				{'method': 'email', 'minutes': 24 * 60},
+				{'method': 'popup', 'minutes': 5},
+			],
+		},
+	};}
+			else if(document.getElementById("recurrence").value=="weekly")
+			{	var event = {
+		'summary':document.getElementById("summary").value,
+		'start': {
+				'dateTime': a,
+				"timeZone" : "Asia/Calcutta"
+		},
+		'end': {
+				'dateTime': b,
+				"timeZone" : "Asia/Calcutta"
+		},
+		'recurrence': [
+			"RRULE:FREQ=WEEKLY",
+		],
+		'reminders': {
+			'useDefault': false,
+			'overrides': [
+				{'method': 'email', 'minutes': 24 * 60 * 7},
+				{'method': 'popup', 'minutes': 5},
+			],
+		},
+	};}
+			else if(document.getElementById("recurrence").value=="monthly")
+			{	var event = {
+		'summary':document.getElementById("summary").value,
+		'start': {
+				'dateTime': a,
+				"timeZone" : "Asia/Calcutta"
+		},
+		'end': {
+				'dateTime': b,
+				"timeZone" : "Asia/Calcutta"
+		},
+		'recurrence': [
+			"RRULE:FREQ=MONTHLY",
+		],
+		'reminders': {
+			'useDefault': false,
+			'overrides': [
+				{'method': 'email', 'minutes': 24 * 60 * 30},
+				{'method': 'popup', 'minutes': 5},
+			],
+		},
+	};}
+		var request = gapi.client.calendar.events.insert({
+		'calendarId': 'primary',
+		'resource': event
+		});
+
+		request.execute(function(event) {
+			appendPre('Event created!');
+		});
+	}
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('output');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+    </script>
+    <script src="https://apis.google.com/js/client.js">
+    </script>
+  </head>
+  <body>
+       <header>
+      <!-- Start: Navigation wrapper -->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a href="index.html" class="brand brand-bootbus">We Care</a>
+            <!-- Below button used for responsive navigation -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <!-- Start: Primary navigation -->
+            <div class="nav-collapse collapse">        
+              <ul class="nav pull-right">
+                <!--<li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products and Services<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="nav-header">PRODUCTS</li>
+                    <li><a href="product.html">Product1</a></li>
+                    <li><a href="product.html">Product2</a></li>
+                    <li><a href="product.html">Product3</a></li>
+                    <li><a href="all_products.html">All products</a></li>             
+                    <li class="divider"></li>
+                    <li class="nav-header">SERVICES</li>
+                    <li><a href="service.html">Service1</a></li>
+                    <li><a href="service.html">Service2</a></li>
+                    <li><a href="service.html">Service3</a></li>
+                    <li><a href="all_services.html">All services</a></li>
+                  </ul>                  
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="our_works.html">Our works</a></li>
+                    <li><a href="patnerships.html">Parnerships</a></li>
+                    <li><a href="leadership.html">Leadership</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                  </ul>
+                </li>-->
+                <li><a href="/index/">Home</a></li>
+                <li><a href="/about/">Maps</a></li>
+				<li><a href = "/create/">Calendars</a></li>
+                <li><a href="/events/">Upcoming Events</a></li>
+                <li><a href="/contact/">Contact us</a></li>
+                <li><a href="/entertainment/">Entertainment</a></li>
+                <li><a href="/signin/">Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End: Navigation wrapper -->   
+    </header>
+    <!-- End: HEADER -->
+    <!-- Start: MAIN CONTENT -->
+	    <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Add and view your Reminders</h1>
+        </div>
+        <div class="row">
+          <div class="span4 offset1">
+            <h3><class="widget-header"><i class="icon-gift"></i> Add A Reminder</h3>
+            <div class="widget-body">
+              <div class="center-align">
+                <form class="form-horizontal form-signin-signup">
+				  <br><input type = "text" id = "summary" placeholder="Summary"><br>
+                  <br><input type="text" id="start_date" placeholder="Start Date (yyyy-mm-dd)"><br>
+				  <br><input type="text" id="end_date" placeholder="End Date (yyyy-mm-dd)"><br>
+				  <br><input type="text" id="start_time" placeholder="Start Time (hh:mm:ss)"><br>
+				  <br><input type="text" id="end_time" placeholder="End Time (hh:mm:ss)"><br>
+				  <b>Reminders</b><br>
+				  <select id = "recurrence">
+					<option value = "Select Reccurence">None</option>
+					<option value="daily">Daily</option>
+					<option value="weekly">Weekly</option>
+					<option value="monthly">Monthly</option>
+				  </select>
+                </form>  
+				<div id="authorize-div">
+					<button id="authorize-button" onclick="handleAuthClick(event)" class = "btn btn-primary btn-lg">Add Reminder</button>&nbsp &nbsp &nbsp &nbsp
+          <a href = "list.html" target = "iframe_a"><button id="authorize-button" class = "btn btn-primary btn-lg">View Upcoming</button></a>
+				</div>        
+			  </div>
+			</div>
+		</div>
+    <div class = "span7">
+      <iframe height="550px" width="100%" src="blank.html" name="iframe_a" scrolling = "no"></iframe>
+    </div>
+		</div>
+    <pre id="output"></pre>
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/boot-business.js"></script>
+  </body>
+</html>
