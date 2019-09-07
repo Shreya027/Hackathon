@@ -14,3 +14,4 @@ Some of the helpful tools include reminder setter and location querying . The em
 ![Dashboard](https://i.imgur.com/tCv8vtE.png)
 ![Reminder](https://i.imgur.com/Yza0ol1.png)
 ![Maps](https://i.imgur.com/tuA2T1u.png)
+![Entertainment](https://i.imgur.com/378jOC2.png)
